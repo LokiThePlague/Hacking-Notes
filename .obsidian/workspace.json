@@ -1,0 +1,203 @@
+{
+  "main": {
+    "id": "3ea094de22855358",
+    "type": "split",
+    "children": [
+      {
+        "id": "fe8290535a5688d4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "17855fdae24dbdd0",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "cfbc0b46a75b7f10",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c0ee916fd3f9067c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Services/Services.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "61bc8e3795782c24",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.3.4"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "92e9da4c02f01ac4",
+    "type": "split",
+    "children": [
+      {
+        "id": "9cd842b2172e6412",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d3a74bddd0e68e93",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "295892e4e53c2147",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e8b50011b3d96f73",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "d0dc8236cfdc0656",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "037e445e6ff34650",
+    "type": "split",
+    "children": [
+      {
+        "id": "48610cfc932c64fc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "24726934d017deae",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Services/Services.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d889bc7bd08f55c2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Services/Services.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "819dc9e6355a2a3b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "81e312b8e00531b1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Services/Services.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "61bc8e3795782c24",
+  "lastOpenFiles": [
+    "New Text Document.txt",
+    "Ejercicio grupal 1.md",
+    "Services/FTP/FTP.md",
+    "M2.AC - Resolución.md",
+    "Teoria/M2.AC. Aplicaciones prácticas de la criptografía.md",
+    "Teoria/New Ejercicio 1.md",
+    "ITIL.md",
+    "Gestión de riesgos.md",
+    "Ejercicio grupal 2.md",
+    "Python/M1. Tarea 3 - Python.md",
+    "Ley de Protección de Datos Personales (LPDP).md",
+    "Pasted image 20230423002855.png",
+    "Pasted image 20230422192607.png",
+    "Teoria",
+    "Python",
+    "Services/Services.md",
+    "Services/FTP",
+    "Services"
+  ]
+}
