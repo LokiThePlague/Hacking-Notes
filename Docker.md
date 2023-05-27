@@ -1,7 +1,3 @@
-----
-- Tags: #docker #hacking
-----
-
 # Installation
 
 ```shell
