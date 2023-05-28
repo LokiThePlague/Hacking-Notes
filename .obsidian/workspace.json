@@ -8,36 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "17855fdae24dbdd0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Services & CMS/Services/HTTPS.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f4267a134c2c1b74",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Services & CMS/Services/HTTP.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "5ca24b0e99e0cc93",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Services & CMS/Services.md",
+                "file": "Services & CMS/CMS/WordPress.md",
                 "mode": "source",
                 "source": false
               }
@@ -49,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Hydra.md",
+                "file": "Services & CMS/Services/FTP.md",
                 "mode": "source",
                 "source": false
               }
@@ -129,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Services & CMS/Services/HTTPS.md",
+                "file": "Services & CMS/CMS/WordPress.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -146,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Services & CMS/Services/HTTPS.md",
+                "file": "Services & CMS/CMS/WordPress.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -169,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Services & CMS/Services/HTTPS.md"
+                "file": "Services & CMS/CMS/WordPress.md"
               }
             }
           }
@@ -190,15 +166,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "17855fdae24dbdd0",
+  "active": "5ca24b0e99e0cc93",
   "lastOpenFiles": [
-    "Services & CMS/Services/HTTP.md",
-    "Services & CMS/Services/HTTPS.md",
-    "Services & CMS/Services.md",
+    "Hola.md",
+    "Services & CMS/CMS/WordPress.md",
     "Services & CMS/Services/FTP.md",
+    "Services & CMS/Services/HTTPS.md",
+    "Services & CMS/Services/SMB.md",
     "Tools/Hydra.md",
-    "Services & CMS/Services/SSH.md",
+    "Services & CMS/CMS.md",
+    "Services & CMS/CMS",
+    "Services & CMS/Services/HTTP.md",
     "Docker.md",
+    "Services & CMS/Services.md",
+    "Services & CMS/Services/SSH.md",
     "Services & CMS/Services",
     "Services/Untitled.md",
     "Tools",

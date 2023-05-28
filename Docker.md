@@ -96,6 +96,12 @@ docker rm $(docker ps -a -q) --force
 # -t or -tty: assign virtual terminal
 docker exec -it 123456789 bash
 docker exec -it myContainer bash
+
+# List existing volumes in system
+docker volume ls
+
+# Delete all existing volumes
+docker volume rm $(docker volume ls -q)
 ```
 
 # Docker compose

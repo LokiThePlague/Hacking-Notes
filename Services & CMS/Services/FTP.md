@@ -31,7 +31,6 @@ Inside ftp command, we can login with 'anonymous' user and empty password for an
 # Anonymous login
 --script ftp-anon -p {PORT}
 
-# Brute force
+# Brute-force
 --script ftp-brute --script-args userdb={PATH_TO_LIST} -p {PORT}
 ```
-SSH (en hydra se le puede meter -s {PORT} para especificar puerto y -t 15 para el numero de hilos)
