@@ -1,5 +1,5 @@
 ----
-> We can test WordPress vulns with this playground: [dvwp](https://github.com/vavkamil/dvwp)
+> We can test WordPress vulns with this playground: [dvwp](https://github.com/vavkamil/dvwp).
 ----
 
 # User enumeration

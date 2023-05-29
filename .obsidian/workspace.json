@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Services & CMS/CMS/WordPress.md",
+                "file": "Services & CMS/CMS/Joomla.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,13 +25,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Services & CMS/Services/FTP.md",
+                "file": "Services & CMS/CMS/WordPress.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -166,15 +167,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5ca24b0e99e0cc93",
+  "active": "0700189ba5888f7a",
   "lastOpenFiles": [
-    "Hola.md",
+    "Services & CMS/CMS/Magento.md",
+    "Services & CMS/CMS/Drupal.md",
+    "Services & CMS/CMS/Joomla.md",
     "Services & CMS/CMS/WordPress.md",
-    "Services & CMS/Services/FTP.md",
-    "Services & CMS/Services/HTTPS.md",
-    "Services & CMS/Services/SMB.md",
-    "Tools/Hydra.md",
     "Services & CMS/CMS.md",
+    "Services & CMS/Services/FTP.md",
+    "Services & CMS/Services/SMB.md",
+    "Hola.md",
+    "Services & CMS/Services/HTTPS.md",
+    "Tools/Hydra.md",
     "Services & CMS/CMS",
     "Services & CMS/Services/HTTP.md",
     "Docker.md",

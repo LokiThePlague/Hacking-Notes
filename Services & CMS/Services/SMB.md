@@ -107,22 +107,3 @@ mount -t cifs //{IP}/{SMB_DIRECTORY} /mnt/mounted -o username=null,password=null
 # Umount
 umount /mnt/mounted
 ```
-Listar recursos compartidos en red por smb (-N null session, no dispones de credenciales validas)
-smbclient -L 127.0.0.1 -N 
-
-Te reporta lo mismo pero mas comodo porque te reporta los permisos de los directorios
-smbmap -H 127.0.0.1
-
-Conectarte a un directorio
-smbclient //127.0.0.1/myshare -N
-
-Comandos:
-put file.txt -> subir archivo
-get file.txt -> descargar archivo
-
-Podemos jugar con cifs para montar una carpeta en nuestro equipo (apt install cifs-utils), esto es util para trabajar con ellos de forma comoda
-mkdir /mnt/mounted
-mount -t cifs //127.0.0.1/myshare /mnt/mounted -o username=null,password=null,domain=,rw
-
-umount /mnt/mounted
-
