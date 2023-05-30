@@ -8,31 +8,30 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5ca24b0e99e0cc93",
+            "id": "bfa8a06a5c14dcd9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Services & CMS/CMS/Joomla.md",
-                "mode": "source",
+                "file": "Shells.md",
+                "mode": "preview",
                 "source": false
               }
             }
           },
           {
-            "id": "0700189ba5888f7a",
+            "id": "1c71e66365d9ff32",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Services & CMS/CMS/WordPress.md",
+                "file": "Docker.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Services & CMS/CMS/WordPress.md",
+                "file": "Shells.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Services & CMS/CMS/WordPress.md",
+                "file": "Shells.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Services & CMS/CMS/WordPress.md"
+                "file": "Shells.md"
               }
             }
           }
@@ -167,12 +166,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0700189ba5888f7a",
+  "active": "bfa8a06a5c14dcd9",
   "lastOpenFiles": [
+    "Docker.md",
+    "Shells.md",
+    "Services & CMS/CMS/WordPress.md",
     "Services & CMS/CMS/Magento.md",
     "Services & CMS/CMS/Drupal.md",
     "Services & CMS/CMS/Joomla.md",
-    "Services & CMS/CMS/WordPress.md",
     "Services & CMS/CMS.md",
     "Services & CMS/Services/FTP.md",
     "Services & CMS/Services/SMB.md",
@@ -181,7 +182,6 @@
     "Tools/Hydra.md",
     "Services & CMS/CMS",
     "Services & CMS/Services/HTTP.md",
-    "Docker.md",
     "Services & CMS/Services.md",
     "Services & CMS/Services/SSH.md",
     "Services & CMS/Services",
