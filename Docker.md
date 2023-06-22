@@ -109,5 +109,6 @@ docker volume rm $(docker volume ls -q)
 ## Usage
 
 ```shell
+# -d is detached
 docker-compose up -d
 ```
