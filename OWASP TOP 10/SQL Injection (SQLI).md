@@ -20,7 +20,7 @@ It is also necessary to make a brief distinction between the different types of 
 It is important to understand the different types of SQL injections and how they can be used to obtain sensitive information and control a database. Developers must ensure that they properly validate user input and use defense techniques, such as input sanitization and SQL query preparation, to prevent SQL injections in their web applications.
 
 ----
-> We can use this tool to practice SQL: [ExtendClass](https://extendsclass.com/mysql-online.html)
+> We can use this tool to practice SQL: [ExtendClass](https://extendsclass.com/mysql-online.html).
 ----
 # Example
 
