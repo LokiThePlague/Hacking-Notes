@@ -68,13 +68,13 @@ docker rmi $(docker images --filter "dangling=true" -q)
 # Check all containers running in system
 docker ps -a
 
-# Run docker container from an image
+# Run Docker container from an image
 # -d or -detach: run container in background
 # -i or -interactive: allow interactive input
 # -t or -tty: assign virtual terminal
 docker run -dit --name myContainer my_first_image:v1
 
-# Run docker container applying port forwarding (<port_in_host>:<port_in_container>)
+# Run Docker container applying port forwarding (<port_in_host>:<port_in_container>)
 docker run -dit -p 80:80 --name myContainer my_first_image:v1
 
 # Mount for sharing a directory or file between local machine and container
@@ -102,6 +102,23 @@ docker volume ls
 
 # Delete all existing volumes
 docker volume rm $(docker volume ls -q)
+
+# Network
+# Create available Docker networks
+docker network ls
+
+# Create new network
+docker network create --subnet=<SUBNET> <NETWORK_NAME>
+
+# Specify the network driver you want to use (bridge, overlay, mavlan, ipvlan...)
+docker network create --subnet=10.10.0.0/24 --driver=bridge network1
+
+# Assign network to existing Docker container
+# As we create more networks we are assigned more network interfaces.
+docker network connect <NETWORK_NAME> <CONTAINER_NAME>
+
+# Run a Docker container by assigning it a previously created network
+docker run -dit --name myContainer --network=network1 my_first_image:v1
 ```
 
 # Docker compose

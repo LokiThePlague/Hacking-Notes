@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OWASP TOP 10/XML External Entity Injection (XXE).md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
                 "mode": "source",
                 "source": false
               }
@@ -25,14 +25,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OWASP TOP 10/Local File Inclusion (LFI).md",
+                "file": "Docker.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OWASP TOP 10/Local File Inclusion (LFI).md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "OWASP TOP 10/Local File Inclusion (LFI).md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OWASP TOP 10/Local File Inclusion (LFI).md"
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md"
               }
             }
           }
@@ -167,15 +166,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "47fe3157c3cca06e",
+  "active": "50dbba3d0d39b0ec",
   "lastOpenFiles": [
-    "OWASP TOP 10/XML External Entity Injection (XXE).md",
-    "OWASP TOP 10/Local File Inclusion (LFI).md",
-    "Apache.md",
-    "OWASP TOP 10/SQL Injection (SQLI).md",
-    "OWASP TOP 10/Remote File Inclusion (RFI).md",
-    "OWASP TOP 10/Cross-Site Scripting (XSS).md",
     "Docker.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
+    "OWASP TOP 10 & Web Vulnerabilities/SQL Injection (SQLI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
+    "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
+    "Services & CMS/Services/SSH.md",
+    "Apache.md",
     "Machines/VulnHub/MyExpense.md",
     "Machines/VulnHub.md",
     "Machines/VulnHub",
@@ -186,8 +188,7 @@
     "Shells.md",
     "Tools/Hydra.md",
     "OWASP TOP 10/SQL Injection (SQLI)",
-    "OWASP TOP 10",
-    "Services & CMS/Services/SSH.md",
+    "OWASP TOP 10 & Web Vulnerabilities",
     "Services & CMS/Services/SMB.md",
     "Services & CMS/Services/HTTPS.md",
     "Services & CMS/Services/HTTP.md",
@@ -197,10 +198,8 @@
     "Services & CMS/Services.md",
     "Services & CMS/CMS.md",
     "Services & CMS/CMS/WordPress.md",
-    "Hola.md",
     "Services & CMS/CMS",
     "Services & CMS/Services",
-    "Services/Untitled.md",
     "Tools",
     "New Text Document.txt",
     "Pasted image 20230423002855.png",
