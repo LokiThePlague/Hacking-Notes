@@ -119,6 +119,9 @@ docker network connect <NETWORK_NAME> <CONTAINER_NAME>
 
 # Run a Docker container by assigning it a previously created network
 docker run -dit --name myContainer --network=network1 my_first_image:v1
+
+# Delete all custom networks
+docker network rm $(docker network ls -q)
 ```
 
 # Docker compose
