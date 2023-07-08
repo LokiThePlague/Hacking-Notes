@@ -4,83 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "fe8290535a5688d4",
+        "id": "c87e99720cd3808a",
         "type": "tabs",
         "children": [
           {
-            "id": "50dbba3d0d39b0ec",
+            "id": "ea6f7f8abc15fdb7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "973ac9f8341a0951",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docker.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6f9f38c46b2ab874",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8c047f30e599b5f8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Full Zone Transfer Attacks (AXFR).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "aad139233359571d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4df253b0b63e334e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/LaTeX Injections.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -154,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -193,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md"
-              }
+              "state": {}
             }
           }
         ]
@@ -215,18 +146,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d3a74bddd0e68e93",
+  "active": "ea6f7f8abc15fdb7",
   "lastOpenFiles": [
+    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
+    "OWASP TOP 10 & Web Vulnerabilities/SQUID Proxies - Enumeration and exploitation.md",
+    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
+    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/WebDAV enumeration and exploitation.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Open Redirect.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Mass-Asignment Attack - Parameter Binding.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
     "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
     "OWASP TOP 10 & Web Vulnerabilities/Full Zone Transfer Attacks (AXFR).md",
     "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
     "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
     "Docker.md",
     "OWASP TOP 10 & Web Vulnerabilities/LaTeX Injections.md",
     "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
-    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
     "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
     "OWASP TOP 10 & Web Vulnerabilities/NoSQL Injections.md",
     "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
@@ -238,13 +174,8 @@
     "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
     "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
     "Services & CMS/Services/SSH.md",
-    "Apache.md",
-    "Machines/VulnHub/MyExpense.md",
-    "Machines/VulnHub.md",
     "Machines/VulnHub",
     "Machines",
-    "Metasploit.md",
-    "Services & CMS/CMS/Drupal.md",
     "OWASP TOP 10/SQL Injection (SQLI)",
     "OWASP TOP 10 & Web Vulnerabilities",
     "Services & CMS/CMS",
