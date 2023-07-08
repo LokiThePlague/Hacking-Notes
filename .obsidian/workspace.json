@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
                 "mode": "source",
                 "source": false
               }
@@ -26,6 +26,30 @@
               "type": "markdown",
               "state": {
                 "file": "Docker.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6f9f38c46b2ab874",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "8c047f30e599b5f8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Full Zone Transfer Attacks (AXFR).md",
                 "mode": "source",
                 "source": false
               }
@@ -49,7 +73,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Deserialization Attacks.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/LaTeX Injections.md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Deserialization Attacks.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Deserialization Attacks.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Deserialization Attacks.md"
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md"
               }
             }
           }
@@ -191,14 +215,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4df253b0b63e334e",
+  "active": "d3a74bddd0e68e93",
   "lastOpenFiles": [
-    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
-    "Deserialization Attacks.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Full Zone Transfer Attacks (AXFR).md",
+    "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
     "Docker.md",
+    "OWASP TOP 10 & Web Vulnerabilities/LaTeX Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
+    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
     "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
     "OWASP TOP 10 & Web Vulnerabilities/NoSQL Injections.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
     "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
     "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
     "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
@@ -207,7 +237,6 @@
     "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
     "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
     "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
     "Services & CMS/Services/SSH.md",
     "Apache.md",
     "Machines/VulnHub/MyExpense.md",
@@ -216,13 +245,8 @@
     "Machines",
     "Metasploit.md",
     "Services & CMS/CMS/Drupal.md",
-    "Payloads.md",
-    "Shells.md",
-    "Tools/Hydra.md",
     "OWASP TOP 10/SQL Injection (SQLI)",
     "OWASP TOP 10 & Web Vulnerabilities",
-    "Services & CMS/Services/SMB.md",
-    "Services & CMS/Services/HTTPS.md",
     "Services & CMS/CMS",
     "Services & CMS/Services",
     "Tools",
