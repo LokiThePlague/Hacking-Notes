@@ -4,15 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "c87e99720cd3808a",
+        "id": "62dd9759ec83ee38",
         "type": "tabs",
         "children": [
           {
-            "id": "ea6f7f8abc15fdb7",
+            "id": "32416760f34ac9f5",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a98a725b342354a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3d0369438ce7b512",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tools/Hydra.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -44,7 +72,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "bash",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,11 +97,13 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "037e445e6ff34650",
@@ -89,6 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +158,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md"
+              }
             }
           }
         ]
@@ -146,34 +180,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ea6f7f8abc15fdb7",
+  "active": "32416760f34ac9f5",
   "lastOpenFiles": [
-    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
-    "OWASP TOP 10 & Web Vulnerabilities/SQUID Proxies - Enumeration and exploitation.md",
-    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
-    "OWASP TOP 10 & Web Vulnerabilities/WebDAV enumeration and exploitation.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Open Redirect.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Mass-Asignment Attack - Parameter Binding.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Full Zone Transfer Attacks (AXFR).md",
     "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
-    "Docker.md",
-    "OWASP TOP 10 & Web Vulnerabilities/LaTeX Injections.md",
     "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
-    "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
-    "OWASP TOP 10 & Web Vulnerabilities/NoSQL Injections.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
     "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Type Juggling Attack.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
+    "Tools/Hydra.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
     "Services & CMS/Services/SSH.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
+    "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
+    "Payloads.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
+    "Services & CMS/CMS.md",
+    "Services & CMS/CMS/Magento.md",
+    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
+    "Services & CMS/CMS/WordPress.md",
+    "OWASP TOP 10 & Web Vulnerabilities/SQUID Proxies - Enumeration and exploitation.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Origin Resource Sharing (CORS).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Mass-Asignment Attack - Parameter Binding.md",
+    "OWASP TOP 10 & Web Vulnerabilities/XPath Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Insecure Direct Object Reference (IDORs).md",
+    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
     "Machines/VulnHub",
     "Machines",
     "OWASP TOP 10/SQL Injection (SQLI)",

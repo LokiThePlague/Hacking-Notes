@@ -1,0 +1,11 @@
+**Insecure Direct Object References (IDOR)** is a type of security vulnerability that occurs when a web application uses *internal identifiers* (such as numbers or names) to identify and access resources (such as files or data) and the user's authorization to access them is not properly validated.
+
+For example, if a web application uses a numeric identifier to identify a record in a database, an attacker may attempt to guess this identifier and access the records without proper authorization. This can allow attackers to access sensitive information, modify data, create unauthorized user accounts and perform other malicious actions.
+
+The IDOR vulnerability can occur when a web application *does not implement appropriate access controls* for the resources it handles. For example, an application may validate access through authentication and authorization for resources displayed in the user interface, but not apply the same validation for resources accessed directly through a URL.
+
+To exploit an IDOR vulnerability, an attacker can attempt to manually modify the identifier of an object in the URL or use an automated tool to test different values. If the attacker finds an identifier that allows him to access a resource that should not be available, then the IDOR vulnerability has been successfully exploited.
+
+For example, suppose user 'A' has an order with the numeric identifier 123 and user 'B' has an order with the numeric identifier 124. If the attacker tries to access through the URL "*\https://example.com/orders/124*", the web application could allow access to that order without validating whether the user has permission to access it. In this way, the attacker could access user 'B''s request without proper authorization.
+
+To prevent the IDOR vulnerability, it is important to properly validate the user's authorization to access resources, both in the user interface and in direct requests via URL. In addition, it is recommended to restrict access permissions to resources and to keep software and operating systems up to date.

@@ -1,0 +1,9 @@
+**Cross-Origin Resource Sharing (CORS)** is a mechanism that allows a web server to *restrict access to resources from different origins*, i.e. different domains or protocols. CORS is used to protect users' privacy and security by preventing other websites from accessing sensitive information without permission.
+
+Suppose we have a web application on the domain "*example.com*" that uses a web API on the domain "*api.example.com*" to retrieve data. If the web application is properly configured for CORS, it will only allow cross-origin requests from the "*example.com*" domain to the API on the "*api.example.com*" domain. If a request is made from a different domain, such as "*attacker.com*", the request will be blocked by the web browser.
+
+However, if the web application is not properly configured for CORS, an attacker could exploit this weakness to access sensitive resources and data. For example, if the web application does not validate the user's authorization to access resources, an attacker could inject malicious code into a web page to make requests to the application's API in the "*api.example.com*" domain.
+
+The attacker could use automated tools to test different CORS header values and find a misconfiguration that allows the request from another domain. If the attacker is successful, he could access sensitive resources and data that should not be available from your website. For example, he could retrieve user login information, modify application data, etc.
+
+To prevent this type of attack, it is important to properly configure CORS in the web application and ensure that only cross-origin requests from trusted domains are allowed.

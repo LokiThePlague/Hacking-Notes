@@ -1,8 +1,8 @@
 The Remote File Inclusion (RFI) vulnerability is a security vulnerability where an attacker can include remote files in a vulnerable web application. This can allow the attacker to execute malicious code on the web server and compromise the system.
 
-En un ataque de RFI, el atacante utiliza una entrada del usuario, como una URL o un campo de formulario, para incluir un archivo remoto en la solicitud. Si la aplicación web no valida adecuadamente estas entradas, procesará la solicitud y devolverá el contenido del archivo remoto al atacante.
+In an RFI attack, the attacker uses user input, such as a URL or form field, to include a remote file in the request. If the web application does not properly validate these inputs, it will process the request and return the contents of the remote file to the attacker.
 
-Un atacante puede utilizar esta vulnerabilidad para incluir archivos remotos maliciosos que contienen código malicioso, como virus o troyanos, o para ejecutar comandos en el servidor vulnerable. En algunos casos, el atacante puede dirigir la solicitud hacia un recurso PHP alojado en un servidor de su propiedad, lo que le brinda un mayor grado de control en el ataque.
+An attacker can use this vulnerability to include malicious remote files containing malicious code, such as viruses or Trojans, or to execute commands on the vulnerable server. In some cases, the attacker can direct the request to a PHP resource hosted on a server they own, giving them a greater degree of control in the attack.
 
 # Example
 
