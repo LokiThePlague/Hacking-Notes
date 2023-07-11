@@ -8,36 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "32416760f34ac9f5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a98a725b342354a9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "3d0369438ce7b512",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Hydra.md",
+                "file": "Privilege Escalation/Cron jobs.md",
                 "mode": "source",
                 "source": false
               }
@@ -72,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "bash",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -97,13 +73,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "037e445e6ff34650",
@@ -119,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
+                "file": "Privilege Escalation/Cron jobs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
+                "file": "Privilege Escalation/Cron jobs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -159,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md"
+                "file": "Privilege Escalation/Cron jobs.md"
               }
             }
           }
@@ -180,34 +154,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "32416760f34ac9f5",
+  "active": "3d0369438ce7b512",
   "lastOpenFiles": [
-    "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
+    "Privilege Escalation/SUID.md",
+    "Privilege Escalation/Cron jobs.md",
+    "Privilege Escalation/Sudoers.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
+    "Privilege Escalation",
     "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
     "Tools/Hydra.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
-    "Services & CMS/Services/SSH.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
+    "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
+    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
     "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
     "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
-    "Payloads.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
-    "Services & CMS/CMS.md",
-    "Services & CMS/CMS/Magento.md",
-    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
-    "Services & CMS/CMS/WordPress.md",
-    "OWASP TOP 10 & Web Vulnerabilities/SQUID Proxies - Enumeration and exploitation.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Race Condition.md",
     "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Type Juggling Attack.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Python - Deserialization Pickle Attack (DES-Pickle).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/GraphQL Introspection, Mutations and IDORs.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Python - Yaml Deserialization Attack (DES-Yaml).md",
+    "OWASP TOP 10 & Web Vulnerabilities/CSS Injections (CSSI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Json Web Tokens (JWT) - Enumeration and exploitation.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Session Puzzling - Session Fixation - Session Variable Overloading.md",
+    "OWASP TOP 10 & Web Vulnerabilities/SQL Truncation.md",
     "OWASP TOP 10 & Web Vulnerabilities/Cross-Origin Resource Sharing (CORS).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Mass-Asignment Attack - Parameter Binding.md",
-    "OWASP TOP 10 & Web Vulnerabilities/XPath Injections.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Insecure Direct Object Reference (IDORs).md",
-    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
+    "Services & CMS/Services/SSH.md",
     "Machines/VulnHub",
     "Machines",
     "OWASP TOP 10/SQL Injection (SQLI)",
@@ -218,7 +193,6 @@
     "New Text Document.txt",
     "Pasted image 20230423002855.png",
     "Pasted image 20230422192607.png",
-    "Teoria",
-    "Python"
+    "Teoria"
   ]
 }

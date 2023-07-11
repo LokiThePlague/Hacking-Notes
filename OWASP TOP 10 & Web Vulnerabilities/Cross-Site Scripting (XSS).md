@@ -8,6 +8,7 @@ There are several types of XSS vulnerabilities, including the following:
 - **DOM-Based**: This type of XSS occurs when malicious code is executed in the user's browser through the DOM (Document Object Model). This occurs when JavaScript code on a web page modifies the DOM in a way that is vulnerable to malicious code injection.
 
 XSS attacks can have serious consequences for businesses and individual users. For this reason, it is essential that web developers implement appropriate security measures to prevent XSS vulnerabilities. These measures can include validating input data, removing dangerous HTML code, and limiting JavaScript permissions in the user's browser.
+
 # Example
 
 ----

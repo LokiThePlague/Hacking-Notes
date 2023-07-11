@@ -6,6 +6,6 @@ In a Type Juggling attack, an attacker manipulates program input data to change 
 
 A common example of how a Type Juggling attack can be used to circumvent authentication is in a system that uses string comparisons to verify user passwords. Instead of providing a valid password, the attacker could provide a string that looks like a valid password, but actually is not.
 
-For example, in PHP, a string that starts with a number is automatically converted to a number if it is used in a numeric comparison. Therefore, if the attacker provides a string that begins with the number *zero (0)*, such as "*00123*", the program will convert it to the integer *123*.
+For example, in *PHP*, a string that starts with a number is automatically converted to a number if it is used in a numeric comparison. Therefore, if the attacker provides a string that begins with the number *zero (0)*, such as "*00123*", the program will convert it to the integer *123*.
 
 If the password stored in the system is also stored as an integer (instead of as a string), the comparison of the attacker's password with the stored password could be successful, allowing the attacker to bypass authentication and gain unauthorized access to the system.
