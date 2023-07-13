@@ -6,7 +6,7 @@ SUID privilege abuse is a technique used by attackers to elevate their level of 
 
 To prevent SUID privilege abuse, it is recommended to limit the number of files with SUID permissions and ensure that they are only granted to files that require this permission to function properly. In addition, it is important to regularly monitor the system for unexpected changes in file permissions and to look for possible security breaches.
 
-# Search for files with SUID permission
+# Enumeration
 
 We can *search* for all files with *SUID* permissions on the system with the *find* command:
 

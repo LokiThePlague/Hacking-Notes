@@ -13,7 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Privilege Escalation/Cron jobs.md",
+                "file": "Privilege Escalation/Internal system services.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "dc6f0ec3e61672f4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Privilege Escalation/Permissions abuse.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Privilege Escalation/Cron jobs.md",
+                "file": "Privilege Escalation/Internal system services.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Privilege Escalation/Cron jobs.md",
+                "file": "Privilege Escalation/Internal system services.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Privilege Escalation/Cron jobs.md"
+                "file": "Privilege Escalation/Internal system services.md"
               }
             }
           }
@@ -156,9 +168,17 @@
   },
   "active": "3d0369438ce7b512",
   "lastOpenFiles": [
+    "Privilege Escalation/Special user groups.md",
+    "Privilege Escalation/Internal system services.md",
+    "Privilege Escalation/Kernel.md",
+    "Privilege Escalation/Permissions abuse.md",
+    "Privilege Escalation/Python Library Hijacking.md",
     "Privilege Escalation/SUID.md",
+    "Privilege Escalation/Capabilities.md",
+    "Privilege Escalation/PATH Hijacking.md",
     "Privilege Escalation/Cron jobs.md",
     "Privilege Escalation/Sudoers.md",
+    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
     "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
     "Privilege Escalation",
     "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
@@ -175,14 +195,6 @@
     "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
     "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
     "OWASP TOP 10 & Web Vulnerabilities/GraphQL Introspection, Mutations and IDORs.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Python - Yaml Deserialization Attack (DES-Yaml).md",
-    "OWASP TOP 10 & Web Vulnerabilities/CSS Injections (CSSI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Json Web Tokens (JWT) - Enumeration and exploitation.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Session Puzzling - Session Fixation - Session Variable Overloading.md",
-    "OWASP TOP 10 & Web Vulnerabilities/SQL Truncation.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Origin Resource Sharing (CORS).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
-    "Services & CMS/Services/SSH.md",
     "Machines/VulnHub",
     "Machines",
     "OWASP TOP 10/SQL Injection (SQLI)",
