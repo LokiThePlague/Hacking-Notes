@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ede8b9a628bc415a",
+            "id": "68169c281c2a601b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Buffer Overflow.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "slash",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -73,7 +73,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Buffer Overflow.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Buffer Overflow.md",
+                "file": "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Buffer Overflow.md"
+                "file": "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md"
               }
             }
           }
@@ -154,35 +155,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ede8b9a628bc415a",
+  "active": "68169c281c2a601b",
   "lastOpenFiles": [
+    "OWASP TOP 10 & Web Vulnerabilities/Open Redirect.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Local File Inclusion (LFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Request Forgery (CSRF).md",
     "OWASP TOP 10 & Web Vulnerabilities/Deserialization Attacks.md",
+    "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
+    "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
+    "Services & CMS/CMS/WordPress.md",
+    "OWASP TOP 10 & Web Vulnerabilities/XPath Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Insecure Direct Object Reference (IDORs).md",
+    "OWASP TOP 10 & Web Vulnerabilities/LDAP Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Mass-Asignment Attack - Parameter Binding.md",
+    "OWASP TOP 10 & Web Vulnerabilities/NoSQL Injections.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Prototype Pollution.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Python - Yaml Deserialization Attack (DES-Yaml).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Race Condition.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
+    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Template Injection (SSTI).md",
+    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
+    "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
     "Buffer Overflow.md",
     "Privilege Escalation/Internal system services.md",
     "Privilege Escalation/Special user groups.md",
     "Privilege Escalation/Kernel.md",
     "Privilege Escalation/Permissions abuse.md",
-    "Privilege Escalation/Python Library Hijacking.md",
-    "Privilege Escalation/SUID.md",
-    "Privilege Escalation/Capabilities.md",
-    "Privilege Escalation/PATH Hijacking.md",
-    "Privilege Escalation/Cron jobs.md",
-    "Privilege Escalation/Sudoers.md",
-    "OWASP TOP 10 & Web Vulnerabilities/ShellShock Attack.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Cross-Site Scripting (XSS).md",
     "Privilege Escalation",
-    "OWASP TOP 10 & Web Vulnerabilities/SQL Injections (SQLI).md",
-    "Tools/Hydra.md",
-    "OWASP TOP 10 & Web Vulnerabilities/File upload abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/API Abuse.md",
-    "OWASP TOP 10 & Web Vulnerabilities/XML External Entity Injection (XXE).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Remote File Inclusion (RFI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Race Condition.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Client-Side Template Injection (CSTI).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Padding Oracle Attack (Padding Oracle).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Type Juggling Attack.md",
-    "OWASP TOP 10 & Web Vulnerabilities/Python - Deserialization Pickle Attack (DES-Pickle).md",
-    "OWASP TOP 10 & Web Vulnerabilities/Server-Side Request Forgery (SSRF).md",
     "Machines/VulnHub",
     "Machines",
     "OWASP TOP 10/SQL Injection (SQLI)",

