@@ -40,7 +40,7 @@ lynx http://{IP}
 # Get web headers and find information like XSS enabled or not, IIS version ...
 --script http-headers -p{PORT}
 
-# Get supported http methodsand marks potentially dangerous ones
+# Get supported http methods and marks potentially dangerous ones
 --script http-methods --script-args http-methods.url-path=/{WEB_DIRECTORY}/ -p{PORT}
 
 # Get information about webdav installations
